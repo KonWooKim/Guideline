@@ -1,187 +1,194 @@
-What to Annotate:
+# Biomedical Annotation Guidelines
 
-Annotate all Specific Disease mentions
+## What to Annotate
 
-A textual string referring to a disease name may refer to a Specific Disease, or a Disease Class. Disease mentions that could be described as a family of many Specific Diseases were annotated with an annotation category called Disease Class. The annotation category Specific Disease was used for those mentions which could be linked to one specific definition that does not include further categorization.
+### 1. Annotate all **Specific Disease** mentions
+A textual string referring to a disease name may refer to a **Specific Disease** or a **Disease Class**.  
+- **Disease Class**: Mentions that could be described as a family of multiple specific diseases.  
+- **Specific Disease**: Mentions that can be linked to one specific definition that does not include further categorization.
 
-e.g. Diastrophic dysplasia is an autosomal recessive disease characterized by short stature, very short limbs and joint problems that restrict mobility.
+**Example**  
+> Diastrophic dysplasia is an autosomal recessive disease characterized by short stature, very short limbs and joint problems that restrict mobility.
 
-Annotate: "Diastrophic dysplasia" as Specific Disease category and "autosomal recessive disease" as Disease Class category
+- **Annotate**:  
+  - “Diastrophic dysplasia” as **Specific Disease**  
+  - “autosomal recessive disease” as **Disease Class**
 
-Annotate contiguous text strings.
+---
 
-A textual string may refer to two or more separate disease mentions. Such mentions are annotated with the Composite Mention category.
+### 2. Annotate **contiguous text strings**
+A textual string may refer to two or more separate disease mentions. Such mentions are annotated with the **Composite Mention** category.
 
-e.g. The text phrase "Duchenne and Becker muscular dystrophy" refers to two separate diseases. If this phrase is separated into two strings: "Duchenne" and "Becker muscular dystrophy", it results in information loss, because the word "Duchenne" on its own is not a disease mention.
+**Example**  
+> The text phrase “Duchenne and Becker muscular dystrophy” refers to two separate diseases. If this phrase is separated into two strings: “Duchenne” and “Becker muscular dystrophy,” it results in information loss, because the word “Duchenne” on its own is not a disease mention.
 
-Annotate disease mentions that are used as Modifiers for other concepts
+---
 
-A textual string may refer to a disease name, but it may modify a noun phrase, or not be a noun phrase and this is better expressed with the Modifier annotation category.
+### 3. Annotate disease mentions that are used as **Modifiers** for other concepts
+A textual string may refer to a disease name, but it may modify a noun phrase (or may not be a noun phrase itself). In such cases, annotate using the **Modifier** category.
 
-e.g.: Although this mutation was initially detected in four of 33 colorectal cancer families analysed from eastern England, more extensive analysis has reduced the frequency to four of 52 English HNPCC kindreds analysed.
-Annotate: "colorectal cancer" as Modifier category and "HNPCC" as Modifier category.
+**Example**  
+> Although this mutation was initially detected in four of 33 colorectal cancer families analysed from eastern England, more extensive analysis has reduced the frequency to four of 52 English HNPCC kindreds analysed.
 
-Annotate duplicate mentions.
+- **Annotate**:  
+  - “colorectal cancer” as **Modifier**  
+  - “HNPCC” as **Modifier**
 
+---
+
+### 4. Annotate **duplicate mentions**
 For each sentence in the PubMed abstract and title, the locations of all disease mentions are marked, including duplicates within the same sentence.
 
+---
 
-Annotate minimum necessary span of text.
+### 5. Annotate **minimum necessary span of text**
+Use the smallest span necessary to include all tokens expressing the most specific form of the disease.
 
-The minimum span of text necessary to include all the tokens expressing the most specific form of the disease is preferred.
+**Example**  
+> In the case of “insulin-dependent diabetes mellitus,” the disease mention including the whole phrase was preferred over its substrings such as “diabetes mellitus” or “diabetes.”
 
-e.g., in the case of "insulin-dependent diabetes mellitus", the disease mention including the whole phrase was preferred over its substrings such as "diabetes mellitus" or "diabetes".
+---
 
+### 6. Annotate all **synonymous mentions**
+Abbreviation definitions such as “Huntington disease” (“HD”) are separated into two annotated mentions (one for the long form, one for the abbreviation).
 
-Annotate all synonymous mentions.
+---
 
-Abbreviation definitions such as "Huntington disease" ("HD") are separated into two annotated mentions.
+## What NOT to Annotate
 
-What NOT to Annotate:
+1. **Do not annotate organism names**  
+   - Organism names such as “human” were excluded from the preferred mention.  
+   - Viruses, bacteria, and other organism names were not annotated **unless** it was clear that the disease caused by these organisms is being discussed.  
+   - **Example**  
+     > Studies of biopsied tissue for the presence of Epstein-Barr virus and cytomegalovirus were negative.  
+     
+     In this case: “Epstein-Barr virus” and “cytomegalovirus” are annotated as **Specific Disease** category **only** if the context clearly indicates the diseases they cause, otherwise not.
 
-Do not annotate organism names.
+2. **Do not annotate gender**  
+   - Tokens such as “male” and “female” were only included if they specifically identified a new form of the disease.  
+   - **Example**  
+     > “male breast cancer”
 
-Organism names such as "human" were excluded from the preferred mention. Viruses, bacteria, and other organism names were not annotated unless it was clear from the context that the disease caused by these organisms is discussed.
+3. **Do not annotate overlapping mentions**  
+   - **Example**: The phrase “von Hippel-Lindau (VHL) disease” is annotated as **one single disease mention** (Specific Disease category).
 
-e.g. Studies of biopsied tissue for the presence of Epstein-Barr virus and cytomegalovirus were negative.
+4. **Do not annotate general terms**  
+   - Very general terms such as “disease,” “syndrome,” “deficiency,” “complications,” “abnormalities,” etc. were excluded.  
+   - However, the terms “cancer” and “tumor” were retained.
 
-In this case: "Epstein-Barr virus" and "cytomegalovirus" are annotated as Specific Disease category.
+5. **Do not annotate references to **biological processes**  
+   - e.g. Terms corresponding to biological processes such as “tumorigenesis” or “cancerogenesis.”
 
+6. **Do not annotate disease mentions interrupted by nested mentions**  
+   - Essentially, do not break the contiguous text rule.  
+   - **Example**  
+     > WT1 dysfunction is implicated in both neoplastic (Wilms tumor, mesothelioma, leukemia, and breast cancer) and nonneoplastic (glomerulosclerosis) disease.  
+     
+     Here, the mentions “neoplastic disease” and “nonneoplastic disease” are not annotated because other tokens break up these phrases.
 
-Do not annotate gender.
+---
 
-Tokens such as "male" and "female" were only included if they specifically identified a new form of the disease,
+## Examples
 
-e.g. "male breast cancer".
+1. **“Insulin-dependent diabetes mellitus”**  
+   - **Specific Disease**  
+   - Prefer the whole string.
 
+2. **CDH1 mutations predispose to early onset “colorectal cancer.”**  
+   - “early onset” may or may not be part of the disease mention, depending on:  
+     1. If there is a UMLS concept specifying this as a separate form of disease  
+     2. If the annotator believes it should be included
 
-Do not annotate overlapping mentions.
+3. **Human “X-linked recessive disorder”**
 
-For example, the phrase "von Hippel-Lindau (VHL) disease" was annotated as one single disease mention, Specific Disease category.
+4. **Her fresh serum lacked complement-mediated bactericidal activity against Neisseria gonorrhoeae.**
 
+5. **“Huntington disease” (“HD”)**  
+   - The long form and the short form constitute two separate mentions.
 
-Do not annotate general terms.
+6. **C7 deficiency**  
+   - “This report represents the first cases of C7 deficiency associated with infectious complications.”  
+   - “infectious complications” is too general a term; C7 deficiency is a **Specific Disease**.
 
-Very general terms such as: disease, syndrome, deficiency, complications, abnormalities, etc. were excluded. However, the terms cancer and tumor were retained.
+7. **“colorectal, endometrial, and ovarian cancers”**  
+   - Considered one **Composite Mention** of several Specific Diseases.
 
+8. **WT1 dysfunction is implicated in both neoplastic (“Wilms tumor,” “mesothelioma,” “leukemias,” and “breast cancer”) and nonneoplastic (“glomerulosclerosis”) disease.**  
+   - Potential disease mentions include: “neoplastic disease,” “nonneoplastic disease,” “Wilms tumor,” “mesothelioma,” “leukemias,” “breast cancer,” and “glomerulosclerosis.”  
+   - “neoplastic disease” and “nonneoplastic disease” are **not** annotated because these phrases are interrupted by nested mentions.
 
-Do not annotate references to biological processes.
+9. **Tumorigenesis and cancerogenesis**  
+   - These refer to processes, not diseases.
 
-e.g. Terms corresponding to biological processes such as "tumorigenesis" or "cancerogenesis".
+10. **“autosomal recessive disease”**  
+    - Refers to a family of diseases that can be passed down genetically → **Disease Class** category.
 
+11. **Large phenotypic variability with “convulsive disorders,” “motor retardation,” and “mental retardation.”**  
+    - These are “grey area” terms: they may not correspond to a single **Specific Disease**, so they are annotated as **Disease Class** category if appropriate.
 
-Do not annotate disease mentions interrupted by nested mentions.
+12. **Borjeson-Forssman-Lehmann syndrome (BFLS) is a syndromal X-linked mental retardation.**  
+    - “Borjeson-Forssman-Lehmann syndrome” = **Specific Disease**  
+    - “X-linked mental retardation syndrome” = a family of diseases (i.e., **Disease Class**)
 
-Basically, do not break the contiguous text rule.
+13. **Acute meningococcal pericarditis**  
+    - Exists as a separate concept in UMLS.
 
-e.g. WT1 dysfunction is implicated in both neoplastic (Wilms tumor, mesothelioma, leukemia, and breast cancer) and nonneoplastic (glomerulosclerosis) disease.
+14. **Acute Neisseria infection**  
+    - May or may not include “acute” depending on context.
 
-In this example, the list of all disease mentions includes: "neoplastic disease" and "nonneoplastic disease" in addition to"Wilms tumor", "mesothelioma", "leukemia", "breast cancer" and "glomerulosclerosis". However, they were not annotated in our corpus, because other tokens break up the phrases.
+15. **Classical galactosemia**  
+    - Includes “classical” because it corresponds to a particular form of the disease.
 
-Examples:
+16. **Inherited spinocerebellar ataxia**  
+    - May or may not include “inherited,” depending on the annotator.
+
+17. **“Adenomatous polyps of the colon and rectum”**  
+    - **Composite Mention**
+
+18. **Fibroepithelial or epithelial hyperplasias**  
+    - **Composite Mention**
+
+19. **Stage II or stage III colorectal cancer**  
+    - **Composite Mention**
+
+---
+
+## How Annotators Used the Annotation Tool
+
+For each annotator, please follow these steps:
+
+1. **Go to the annotation webpage**  
+2. **Follow instructions to select your domain**  
+3. **Work on one annotation set at a time**  
+
+### For each PubMed abstract:
+
+- **Select the PMID** to open the editor page (see figure, if provided).  
+- The editor page shows:  
+  - **PMID** link to the PubMed record  
+  - **TITLE** and **ABSTRACT** text fields  
+- **Annotation Categories** (above the editor window):  
+  - **Specific Disease** (highlighted in yellow)  
+  - **Disease Class** (green)  
+  - **Composite Mention** (blue)  
+  - **Modifier** (purple)  
+- **Submit** button at the bottom of the editor.
+
+### Annotation Process
+
+1. **Annotate the title and abstract** portions of the text.  
+2. **To annotate a new mention**:  
+   - Select (highlight) the entire string to be annotated.  
+   - Click on the appropriate category label (Specific Disease, Disease Class, Composite Mention, or Modifier).  
+3. **To delete a previously annotated mention**:  
+   - Highlight the string to remove.  
+   - Click “Clear” above the editor.  
+4. After processing, **press “Submit”** at the bottom.  
+5. **To retrieve the last saved version** of your annotations, click on “Last Saved.”  
+6. **To undo all annotations** for the current document and revert to the pre-annotated version, click on **“Clear ALL, start from the beginning.”**
+
+**Pre-annotated version**:  
+- Considers all mentions as **Specific Disease** by default.  
+- To change the category, highlight the text and click on the appropriate category label.  
+- To change the span of a previously annotated mention, highlight the desired text and click the relevant category label again.
 
-"Insulin-dependent diabetes mellitus", Specific Disease, prefer the whole string
-
-
-CDH1 mutations predispose to early onset "colorectal cancer"
-
-"early onset" may or may not be part of the disease mention, depends on 1. If ether is a UMLS concept specifying this as a separate form of disease, and 2. If the annotator believes it should be included.
-
-
-Human "X-linked recessive disorder"
-
-
-Her fresh serum lacked complement-mediated bactericidal activity against Neisseria gonorrhoeae.
-
-
-"Huntington disease" ("HD"), the long form and the short form constitute two separate mentions
-
-
-This report represents the first cases of "C7 deficiency" associated with infectious complications
-
-"infectious complications" is too general a term; C7 deficiency however is a Specific Disease.
-
-
-"colorectal, endometrial, and ovarian cancers" is considered one Composite Mention of several Specific Diseases.
-
-
-WT1 dysfunction is implicated in both neoplastic ( "Wilms tumor" , "mesothelioma" , "leukemias" , and "breast cancer" ) and nonneoplastic ( "glomerulosclerosis" ) disease.
-
-If we list all disease mentions in this sentence we have the following: Neoplastic disease, nonneoplastic disease, wilms tumor, mesothelioma, leukemias, breast cancer, glomerulosclerosis. However, "neoplastic disease" or "nonneoplastic disease" are not annotated because these mentions are intercepted with other tokens.
-
-
-Tumorigenesis and cancerogenesis are not annotated as diseases in this corpus. These terms correspond to the process by which normal cells are transformed into cancer cells.
-
-
-"autosomal recessive disease" refers to a whole family of diseases which can be passed down through families because of their genetic characteristics " Disease Class category
-
-
-Large phenotypic variability has been observed, with convulsive disorders, motor retardation and mental retardation being the most abundant manifestations.
-
-"convulsive disorders", "motor retardation" and "mental retardation" are examples of the grey area terms which may be classified as disease mentions, but do not correspond to one Specific Disease, therefore they are annotated as Disease Class category
-
-
-Borjeson-Forssman-Lehmann syndrome ( BFLS ) is a syndromal X-linked mental retardation.
-
-In this case, "X-linked mental retardation syndrome" is a family of diseases, and "Borjeson-Forssman-Lehmann syndrome" is a Specific Disease of that family.
-
-
-Acute meningococcal pericarditis " Constitutes a disease mention and, exists as a separate concept in UMLS, however
-
-Acute Neisseria infection " May or may not include "acute" in the mention name.
-
-
-Classical galactosemia " Includes "classical", because it corresponds to a particular form of the disease.
-
-
-Inherited spinocerebellar ataxia " May or may not include "inherited", depends on annotator
-Adenomatous polyps of the colon and rectum, - Composite Mention
-Fibroepithelial or epithelial hyperplasias, - Composite Mention
-
-
-Stage II or stage III colorectal cancer " Composite Mention
-
-How annotators used the annotation tool:
-For each annotator:
-
-Please:
-
-Go to annotation webpage
-
-
-Follow instructions to select your domain
-
-
-Work one annotation set at a time
-
-
-For each PubMed abstract:
-
-Select PMID to open the editor page. See Figure for an illustration.
-
-The editor page provides the following information:
-
-At the top of the page the PMID links to PubMed record.
-
-Inside the editor there are three fields: PMID, TITLE and ABSTRACT.
-
-Above the editor window are listed the annotation categories: Specific Disease (highlighted in yellow), Disease Class (green), Composite Mention (blue), or Modifier (purple)
-
-At the end of the editor is the "Submit" button.
-
-
-Please annotate the title and the abstract portion of the text.
-
-To annotate a new mention: Select the string to be annotated by holding the mouse down and highlighting the whole selection, then click on the appropriate category label listed above the editor window.
-
-To delete a previously annotated mention: Select the string to be removed from the annotations list by holding the mouse down and highlighting the whole selection, then click on "Clear" label above the editor window.
-
-After the abstract has been processed, press the "Submit" button found just below the editor window.
-
-To retrieve the last saved version of your annotations click on "Last Saved" button.
-
-To undo all your annotations about this particular document and start anew with the pre-annotated version click on "Clear ALL, start from the beginning"
-
-The pre-annotated version considers all mentions as "Specific Disease" category. To change the category, hold the mouse button to highlight the text and click on the appropriate category label above the editor window.
-
-To change the span of a previously annotated mention, hold the mouse button to highlight the desired text and click on the appropriate category label above the editor window.
