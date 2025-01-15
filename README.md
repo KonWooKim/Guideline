@@ -152,7 +152,7 @@ Abbreviation definitions such as “Huntington disease” (“HD”) are separat
     - **Composite Mention**
 
 ---
-
+"""
 ## How Annotators Used the Annotation Tool
 
 For each annotator, please follow these steps:
@@ -191,4 +191,4 @@ For each annotator, please follow these steps:
 - Considers all mentions as **Specific Disease** by default.  
 - To change the category, highlight the text and click on the appropriate category label.  
 - To change the span of a previously annotated mention, highlight the desired text and click the relevant category label again.
-
+"""
