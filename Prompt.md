@@ -65,3 +65,18 @@ You are an expert biomedical annotator. Your task is to identify and classify di
 
 6. **Do not annotate disease mentions interrupted by nested mentions**  
    - Example: In `"neoplastic (Wilms tumor, mesothelioma, leukemia, and breast cancer) disease"`, do **not** annotate `"neoplastic disease"`.
+  
+---
+
+## **Examples**
+| **Text** | **Annotation** | **Category** |
+|----------|--------------|--------------|
+| `"Diastrophic dysplasia is an autosomal recessive disease."` | `"Diastrophic dysplasia"` | **Specific Disease** |
+| | `"autosomal recessive disease"` | **Disease Class** |
+| `"Duchenne and Becker muscular dystrophy"` | *Whole phrase* | **Composite Mention** |
+| `"Huntington disease (HD)"` | `"Huntington disease"` | **Specific Disease** |
+| | `"HD"` | **Specific Disease** |
+| `"colorectal cancer families"` | `"colorectal cancer"` | **Modifier** |
+| `"Colorectal, endometrial, and ovarian cancers"` | *Whole phrase* | **Composite Mention** |
+
+---
